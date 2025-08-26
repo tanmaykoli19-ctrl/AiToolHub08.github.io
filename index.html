@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Name Number Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1a001a, #000000);
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #9d4edd; /* Purple */
+      text-shadow: 2px 2px 5px black;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid #9d4edd;
+      border-radius: 15px;
+      padding: 30px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 15px #9d4edd;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 18px;
+      border: 2px solid #9d4edd;
+      border-radius: 10px;
+      outline: none;
+      width: 80%;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    button {
+      background: #9d4edd;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #06d6a0; /* Green */
+      transform: scale(1.1);
+    }
+
+    .result {
+      margin-top: 25px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #06d6a0;
+      text-shadow: 2px 2px 8px black;
+    }
+
+    .sticker {
+      font-size: 40px;
+      margin: 10px;
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <h1>✨ Name Number Generator ✨</h1>
+  <div class="container">
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <br>
+    <button onclick="generateLuckyNumber()">Get Number 🎉</button>
+    <div class="result" id="result"></div>
+    <div class="sticker">🍀 🎲</div>
+  </div>
+
+  <script>
+    const generatedNumbers = {};
+
+    function generateLuckyNumber() {
+      const name = document.getElementById("nameInput").value.trim();
+      if (!name) {
+        alert("Please enter your name first!");
+        return;
+      }
+
+      // Show same number if already generated for this name
+      if (generatedNumbers[name]) {
+        document.getElementById("result").innerText =
+          `${name}, your number is: ${generatedNumbers[name]}`;
+        return;
+      }
+
+      // Generate number between 999 and 99999
+      const number = Math.floor(Math.random() * (99999 - 999 + 1)) + 999;
+      generatedNumbers[name] = number;
+
+      document.getElementById("result").innerText =
+        `${name}, your number is: ${number}`;
+    }
+  </script>
+</body>
+  </html>
